@@ -1,9 +1,9 @@
 const db = require('../db/dbconnecting')
-const favorites = {};
+const favoritesController = {};
 
 
 
-favorites.getFavorites = async (req, res, next) => {
+favoritesController.getFavorites = async (req, res, next) => {
     try {
         //get all photos the match userID in favorites table.
     const sqlString = ``;
@@ -18,7 +18,7 @@ favorites.getFavorites = async (req, res, next) => {
    };
 };
 
-favorites.addFavorites = async (req, res, next) => {
+favoritesController.addFavorites = async (req, res, next) => {
     try{
         //first check if photo exists in photo table, if it doesn't add it.
 
@@ -34,4 +34,4 @@ favorites.addFavorites = async (req, res, next) => {
 
 
 
-module.exports = favorites;
+module.exports = favoritesController;

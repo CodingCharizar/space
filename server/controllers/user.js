@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const db = require('../db/dbconnecting')
 
 userController.logIn = async (req, res, next) => {
-    try{
+    try {
 
         // SELECT * FROM weather
         // WHERE city = 'San Francisco' AND prcp > 0.0;
@@ -19,7 +19,7 @@ catch(err){
 }
 
 userController.signUp = async (req, res, next) => {
-try{
+try {
     console.log(req.body)
     const {username, password} = req.body
     //hash the password
@@ -38,6 +38,5 @@ catch(err){
     console.log(err)
     next(err)
 }
-
 }
 module.exports = userController;
