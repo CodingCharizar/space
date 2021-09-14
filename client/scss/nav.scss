@@ -1,0 +1,85 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 9rem;
+    background-color: $black-color;
+    height: 15vh;
+    padding: 2.5rem 0;
+  }
+
+.nav div:last-child {
+    margin-left: auto;
+}
+  
+  .nav_btns {
+    text-align: center;
+    width: 10vw;
+    min-width: 8.5rem;
+    background: $accent-background-color;
+    color: $font-color;
+    font-size: $font-nav;
+    padding: 1rem 0rem 0rem 0rem;
+    margin: 1rem 1rem 1rem 1rem;
+    border-radius: 5px 5px 5px 5px;
+  }
+  
+  .nav_btns::before {
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FFF;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+  }
+  .nav_btns:hover{
+    // background-color: lighten($accent-background-color, 5%);
+    // border-left: 0.5rem solid lighten($primary-color, 30%);
+    // padding: 1rem 1.5rem 1rem 1.5rem;
+    color: $font-color;
+    text-decoration:  underline;
+    visibility: visible;
+  }
+
+  .left
+{
+    position: relative;
+}
+
+.left:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #FFF;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+  .nav_btns:focus {
+    background-color: transparentize($primary-color, 0.6%);
+    color: $white-color;
+    font-weight: bold;
+  }
+
+//   .user_info {
+//       display: flex;
+//       background-color: tomato;
+//       justify-content: flex-end;
+//   }
+  .user_btn {
+    text-align: center;
+    width: 10vw;
+    min-width: 8.5rem;
+    background: $accent-background-color;
+    color: $font-color;
+    font-size: $font-nav;
+    padding: 1rem 0rem 0rem 0rem;
+    margin: 1rem 1rem 1rem 1rem;
+    border-radius: 5px 5px 5px 5px;
+  }
+  
