@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: $primary-color;
+  }
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
