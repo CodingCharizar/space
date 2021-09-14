@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 
 const userRouter = require('./routes/user');
 const favoritesRouter = require('./routes/favorites');
+const spaceDataRouter = require('./routes/spaceData');
 
 
 app.use(express.json())
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/user', userRouter);
 app.use('/api/favorites', favoritesRouter);
+app.use('/api/spaceData', spaceDataRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
