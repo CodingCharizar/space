@@ -1,17 +1,5 @@
 const db = require('../db/dbconnecting')
-
 const favorites = {};
-
-// favorites.getFavorites = (req, res, next) => {
-//     const sqlString = ``
-//     db.query(sqlString).then((data)=>{
-//         res.locals.favoritePhotos = data
-//         return next()
-//     }).catch((err)=>{
-//         next(err)
-//     })
-
-// }
 
 
 
