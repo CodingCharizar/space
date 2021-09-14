@@ -17,6 +17,7 @@
   "author": "Nathanael Tracy, Liam Talty, Matilda Wang, Shawn Convery",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.4",
     "babelify": "^10.0.0",
     "express": "^4.12.3",
     "globalthis": "^1.0.2",

@@ -23,9 +23,9 @@ spaceDataRouter.get('/earth',
 
 //exoplanet route
 spaceDataRouter.get('/exoplanet', 
-
+    exoplanetController.getData,
     (req, res) => {
-        res.status(200).json();
+        res.status(200).json(res.locals.exoplanetData);
     }
 )
 
