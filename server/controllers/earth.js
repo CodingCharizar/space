@@ -1,8 +1,17 @@
+const axios = require('axios');
 
 const earth = {};
 
-//get images with API call
-
-//parse JSON object and pass back just the images and perhaps the day in sols/earth date?
+//get image data with API call
+earth.getImages = async function(req, res, next) {
+    try {
+        const { year, month, day } = req.query;
+        const imageData = await axios.get(`https://epic.gsfc.nasa.gov/api/natural/date/${year}-${month}-${day}`);
+        res.locals.imageData = imageData.data;
+        return next();
+    } catch (error) {
+        return next(error);
+    }
+}
 
 module.exports = earth;

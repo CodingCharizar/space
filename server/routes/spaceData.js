@@ -7,17 +7,18 @@ const spaceDataRouter = express.Router();
 
 //mars route
 spaceDataRouter.get('/mars', 
-
+    marsController.getImages,
     (req, res) => {
-        res.status(200).json();
+        res.status(200).json(res.locals.imageData);
     }
 );
 
 //earth route
 spaceDataRouter.get('/earth', 
-
+    earthController.getImages,
     (req, res) => {
-        res.status(200).send('routesworking!');
+        console.log('finished spaceDataRouter: ', res.locals.photo);
+        res.status(200).json(res.locals.imageData);
     }
 );
 
