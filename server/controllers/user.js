@@ -15,10 +15,10 @@ userController.logIn = async (req, res, next) => {
     const sqlString = `SELECT password FROM users 
                         WHERE username = $1`
     //check if the password and username match
-   const hashedPass = await db.query(sqlString, input)
-   const pass = hashedPass.rows[0].password
-   const result = await bcrypt.compare(password, pass)
-   res.locals.loggedIn = result
+    const hashedPass = await db.query(sqlString, input)
+    const pass = hashedPass.rows[0].password
+    const result = await bcrypt.compare(password, pass)
+    res.locals.loggedIn = result
     return next()
 }
 catch(err){
