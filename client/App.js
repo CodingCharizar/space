@@ -7,15 +7,16 @@ import ProtectedRoute from './containers/protectedRoute';
 const App = () => {
 
     //when we have a login set useState to false
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
     
     return (
     <Router>
         <Switch>
-        <Login path='/' exact/>
+        <Login  exact path='/'  isLogin={isLogin} setIsLogin={setIsLogin}/>
         <ProtectedRoute 
                     path ='/main' 
                     component={MainContainer}
+                    isLogin={isLogin}
                     setIsLogin={setIsLogin}
                 />
         </Switch>

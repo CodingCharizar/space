@@ -3,12 +3,12 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 //Nate: OAuth?
-const Login = () => {
+const Login = ({isLogin, setIsLogin}) => {
   const [userData, setUserData] = useState({ username: '', password: '' });
   const [showError, setShowError] = useState(false);
 
   //this should start as false and be changed to true by checking our backend
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const userNameHandler = (e) => {
     setUserData((userData) => ({
@@ -24,7 +24,31 @@ const Login = () => {
     }));
   };
 
-  if (isAuthenticated) {
+  const checkPassword = async (userData) => {
+   const response = await fetch('/api/user/logIn', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(userData)})
+    console.log(response) 
+    const data = await response.json()
+    console.log(data)
+    setIsLogin(data)
+   }
+
+   const signUp = async (userData) => {
+    const response = await fetch('/api/user/signUp', {
+     method: 'POST',
+     headers: {'Content-Type': 'application/json'},
+     body: JSON.stringify(userData)})
+     const data = await response.json()
+     console.log(data)
+     setIsLogin(data)
+    }
+
+  console.log('isAuthenticad', isLogin)
+  
+  if (isLogin) {
+    console.log('redirected to main')
     return <Redirect to='/main' />;
   }
 
@@ -33,9 +57,7 @@ const Login = () => {
       <div className='login_wallpaper'>
         <p className='login_head'>Welcome back!</p>
         <p className='login_intro'>Prepare for blastoff</p>
-        <Link to='/signup'>
-          <button className='login_wall_btn'>SIGN UP</button>
-        </Link>
+          
       </div>
       <div className='signin_page'>
         <p className='signin_head'>Sign in to Space</p>
@@ -59,9 +81,10 @@ const Login = () => {
           )}
         </form>
         {/* <a className='signin_forgotPW'>Forgot your password?</a> */}
-        <button className='signin_btn' onClick={(e) => userSignIn()}>
+        <button className='signin_btn' onClick={()=>{checkPassword(userData)}}>
           SIGN IN
         </button>
+        <button className='login_wall_btn' onClick={()=>{signUp(userData)}}>SIGN UP</button>
       </div>
     </div>
   );
