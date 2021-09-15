@@ -1,8 +1,11 @@
 import React, { component, useState, useEffect } from 'react';
+import favoriteService from '../services/favoriteService';
 
 const Images = ({service}) => {
     const [imageLinks, setImageLinks] = useState([]);
     const [imageNumber, setImageNumber] = useState(0);
+
+    const favorite = (imageLinks !== undefined) ? imageLinks[imageNumber] : [];
 
     useEffect(async () => {
         const result = await service();
@@ -27,8 +30,11 @@ const Images = ({service}) => {
     return (
         <div className='image_component'>
             <button className='image_btns' onClick={() => handleImageNumberClickSubtract()}>Previous</button>
-            <img className='img' src={imageLinks[imageNumber]}/>
-            <button className='image_btns' onClick={() => handleImageNumberClickAdd()}>Next</button>
+            <img className='img' src={favorite}/>
+            <div className='right_btns'>
+                <button className='image_btns' onClick={() => handleImageNumberClickAdd()}>Next</button>
+                <button className='image_btns favorite' onClick={() => favoriteService.addFavorites(favorite)}>Favorite</button>
+            </div>
         </div>
     )
 }

@@ -5,14 +5,16 @@ const favoritesController = {};
 
 favoritesController.getFavorites = async (req, res, next) => {
     try {
-    const userId = req.body.userId
+    const userId = req.cookies.ssid
+    console.log('cookieid', userId, req.cookies);
     const input = [userId]
     const sqlString = `SELECT photos.url FROM photos INNER JOIN 
                        favorites ON photos.id = favorites.photo_id 
                        WHERE favorites.user_id = $1 `;
     const favData = await db.query(sqlString, input);
     res.locals.favs = favData.rows;
-    console.log(favData)
+    // console.log(res.locals.favs)
+    console.log('FAV DATA : ', favData);
     return next();
     }
     catch (err) {
@@ -24,8 +26,13 @@ favoritesController.getFavorites = async (req, res, next) => {
 
 favoritesController.addFavorites = async (req, res, next) => {
     try {
-        const {name, url, userId} = req.body
-        console.log(req.body)
+        const userId = req.cookies.ssid;
+        console.log('req.cookies.ssid', userId)
+        console.log('req.cookies: ', req.cookies);
+        const { url } = req.body
+        console.log('req.body', req.body)
+        // const url = req.params.photo
+        console.log('url', url);
         // username, photoURL 
         const input = [url]
         const sqlStringCheck = `SELECT id FROM photos WHERE URL = $1`
@@ -48,6 +55,7 @@ favoritesController.addFavorites = async (req, res, next) => {
             VALUES ($1, $2)
             RETURNING id`
             const favID = await db.query(sqlInsertFavorite, insertInput);
+            console.log(favID)
           
         }  
         else{
@@ -58,6 +66,7 @@ favoritesController.addFavorites = async (req, res, next) => {
             VALUES ($1, $2)
             RETURNING id`
             const favID = await db.query(sqlInsertFavorite1, insertInput1);
+            console.log(favID)
         }
 
         
