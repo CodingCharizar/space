@@ -6,7 +6,7 @@ const favoritesController = {};
 favoritesController.getFavorites = async (req, res, next) => {
     try {
     const userId = req.cookies.ssid
-    // console.log('cookieid', userId, req.cookies);
+    console.log('cookieid', userId, req.cookies);
     const input = [userId]
     const sqlString = `SELECT photos.url FROM photos INNER JOIN 
                        favorites ON photos.id = favorites.photo_id 
@@ -28,8 +28,11 @@ favoritesController.addFavorites = async (req, res, next) => {
     try {
         const userId = req.cookies.ssid;
         console.log('req.cookies.ssid', userId)
+        console.log('req.cookies: ', req.cookies);
         const { url } = req.body
         console.log('req.body', req.body)
+        // const url = req.params.photo
+        console.log('url', url);
         // username, photoURL 
         const input = [url]
         const sqlStringCheck = `SELECT id FROM photos WHERE URL = $1`
