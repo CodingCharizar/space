@@ -6,7 +6,6 @@ const MarsContainer = () => {
 
     return (
         <div>
-            {/* <h1>this is mars container</h1> */}
             <Images service={MarsService.getImages}/>
         </div>
     )
