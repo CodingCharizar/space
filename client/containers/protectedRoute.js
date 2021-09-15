@@ -9,8 +9,7 @@ console.log('entering protected route')
     
  <Route
       {...rest}
-      // render={() => (isLogin ? <Component {...rest} /> : <Redirect to='/' />)}
-      render={() => (true ? <Component {...rest} /> : <Redirect to='/' />)}
+      render={() => (isLogin ? <Component {...rest} /> : <Redirect to='/' />)}
     //  render = {() => <Component {...rest}/>}
     />
 
