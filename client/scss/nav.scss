@@ -1,0 +1,83 @@
+
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $darkblue;
+}
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 9rem;
+    background-color: $black-color;
+    height: 15vh;
+    padding: 2.5rem 0;
+  }
+
+.nav div:last-child {
+    margin-left: auto;
+}
+  
+button {
+    font-family: 'Montserrat', sans-serif;
+   text-transform: uppercase;
+  
+}
+
+button {
+    position: relative;
+    border: none;
+    font-size: 18px;
+    transition: color 0.5s, transform 0.2s, background-color 0.2s;
+    outline: none;
+    border-radius: 3px;
+    margin: 0 10px;
+    padding: 23px 33px;
+    border: 3px solid transparent;
+    
+    &:active{
+        transform: translateY(3px);
+    }
+    &::after, &::before{
+      border-radius: 3px;
+      }
+}
+
+
+  .nav_btns {
+    background-color: transparent;
+    color: $font-color;
+    border: none;
+    overflow: hidden;
+    box-shadow: none;
+    
+    &:hover{
+      color: $primary-color;
+    }
+  }
+
+  .nav_btns:focus {
+        color: $primary-color;
+    font-weight: bold;
+  }
+
+//   .user_info {
+//       display: flex;
+//       background-color: tomato;
+//       justify-content: flex-end;
+//   }
+  .user_btn {
+    background-color: transparent;
+    color: $font-color;
+    border: none;
+    overflow: hidden;
+    box-shadow: none;
+    
+    &:hover{
+      color: $primary-color;
+    }
+  }
+  
