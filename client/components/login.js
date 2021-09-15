@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 
@@ -9,6 +9,16 @@ const Login = ({isLogin, setIsLogin}) => {
 
   //this should start as false and be changed to true by checking our backend
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect( async ()=>{
+    const response = await fetch('/api/user/checkCookie');
+    const data = await response.json()
+    console.log(data)
+    if(data){
+      setIsLogin(true)
+    }
+
+  }, [])
 
   const userNameHandler = (e) => {
     setUserData((userData) => ({
