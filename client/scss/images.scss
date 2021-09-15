@@ -70,8 +70,16 @@
   }
 
   .img{
+    // position: absolute;
+    // align-self: center;
     max-width: 50vw;
     max-height: 50vw;
+  }
+
+  .right_btns {
+    display: flex;
+    flex-direction: column;
+    
   }
 
   // .earth_container {

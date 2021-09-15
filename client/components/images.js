@@ -28,7 +28,10 @@ const Images = ({service}) => {
         <div className='image_component'>
             <button className='image_btns' onClick={() => handleImageNumberClickSubtract()}>Previous</button>
             <img className='img' src={imageLinks[imageNumber]}/>
-            <button className='image_btns' onClick={() => handleImageNumberClickAdd()}>Next</button>
+            <div className='right_btns'>
+                <button className='image_btns' onClick={() => handleImageNumberClickAdd()}>Next</button>
+                <button className='image_btns favorite'>Favorite</button>
+            </div>
         </div>
     )
 }
