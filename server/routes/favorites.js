@@ -3,12 +3,12 @@ const favoritesController = require('../controllers/favorites');
 
 const favoritesRouter = express.Router();
 
-favoritesRouter.post('/add', favoritesController.addFavorites, (req, res) => {
+favoritesRouter.post('/addFavorites', favoritesController.addFavorites, (req, res) => {
     res.status(200).send('test')
 })
 
-favoritesRouter.post('/get', favoritesController.getFavorites, (req, res) => {
-    res.status(200).send(res.locals.favs)
+favoritesRouter.get('/getFavorites', favoritesController.getFavorites, (req, res) => {
+    res.status(200).json(res.locals.favs)
 })
 
 module.exports = favoritesRouter;
