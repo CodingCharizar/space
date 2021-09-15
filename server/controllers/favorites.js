@@ -5,23 +5,14 @@ const favoritesController = {};
 
 favoritesController.getFavorites = async (req, res, next) => {
     try {
-        //get all photos the match userID in favorites table.
-    /**
-     * SELECT column_name(s)
-FROM table1
-INNER JOIN table2
-ON table1.column_name = table2.column_name;
-
-     */
-
-        //select userid from table users (username) inner join with favorites table 
-        //get userId from user table
-        //grab all of the photo Ids from favorite table that match userId
-        //grab all of the photo urls from those photo IDs.
-        
-    const sqlString = `SELECT `;
-    const favData = await db.query(sqlString);
-    res.locals.favoritePhotos = favData;
+    const userId = req.body.userId
+    const input = [userId]
+    const sqlString = `SELECT photos.url FROM photos INNER JOIN 
+                       favorites ON photos.id = favorites.photo_id 
+                       WHERE favorites.user_id = $1 `;
+    const favData = await db.query(sqlString, input);
+    res.locals.favs = favData.rows;
+    console.log(favData)
     return next();
     }
     catch (err) {
@@ -33,31 +24,52 @@ ON table1.column_name = table2.column_name;
 
 favoritesController.addFavorites = async (req, res, next) => {
     try {
-        const {name, url, username} = req.body
+        const {name, url, userId} = req.body
+        console.log(req.body)
         // username, photoURL 
         const input = [url]
         const sqlStringCheck = `SELECT id FROM photos WHERE URL = $1`
         //first check if photo url exists in photo table, if it doesn't add it.
         const photos = await db.query(sqlStringCheck, input);
-        console.log("photos:",photos)
+        // const id = photos.rows[0]
+        console.log('photos', photos)
        
         if (photos.rows.length === 0) {
             const sqlInsert = `INSERT INTO photos(url)
                                VALUES ($1)
                                RETURNING id`
             const id = await db.query(sqlInsert, input)
-          
-        }  
-    
-        console.log("print",id)
-            const insertInput = [userId, id]
+            console.log('id', id);
+           
+            const photoId = id.rows[0].id;
+            const insertInput = [userId, photoId]
             const sqlInsertFavorite = `
             INSERT INTO favorites (user_id, photo_id)
-            VALUES ($1 $2)
+            VALUES ($1, $2)
             RETURNING id`
             const favID = await db.query(sqlInsertFavorite, insertInput);
-            res.locals.favID = favID
-            console.log("print2",favID)
+          
+        }  
+        else{
+            const photoId1 = photos.rows[0].id
+            const insertInput1 = [userId, photoId1]
+            const sqlInsertFavorite1 = `
+            INSERT INTO favorites (user_id, photo_id)
+            VALUES ($1, $2)
+            RETURNING id`
+            const favID = await db.query(sqlInsertFavorite1, insertInput1);
+        }
+
+        
+        
+            // const insertInput = [userId, id]
+            // const sqlInsertFavorite = `
+            // INSERT INTO favorites (user_id, photo_id)
+            // VALUES ($1 $2)
+            // RETURNING id`
+            // const favID = await db.query(sqlInsertFavorite, insertInput);
+            // res.locals.favID = favID
+            // console.log("print2",favID)
         return next()
     
     }
