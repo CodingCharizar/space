@@ -7,10 +7,18 @@ userController.logIn = async (req, res, next) => {
 
         // SELECT * FROM weather
         // WHERE city = 'San Francisco' AND prcp > 0.0;
-    const input = [req.body]
-    const sqlString = `SELECT * FROM users WHERE username AND password `
+    //req.body
+    //{username: Shawn123,
+      //  password: metilda13}
+    const {username, password} = req.body
+    const input = [username]
+    const sqlString = `SELECT password FROM users 
+                        WHERE username = $1`
     //check if the password and username match
-    const loggedIn = await db.query(sqlString)
+   const hashedPass = await db.query(sqlString, input)
+   const pass = hashedPass.rows[0].password
+   const result = await bcrypt.compare(password, pass)
+   res.locals.loggedIn = result
     return next()
 }
 catch(err){
