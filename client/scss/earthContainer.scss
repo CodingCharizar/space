@@ -1,0 +1,43 @@
+// * {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+//   }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: $primary-color;
+  }
+
+.earth_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.earth_btns {
+    background-color: $primary-color;
+    color: $font-color;
+    border: none;
+    overflow: hidden;
+    box-shadow: none;
+
+    &:hover{
+      color: $primary-color;
+    }
+  }
+
+  .earth_btns:focus {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .earth_img{
+    max-width: 500vw;
+    height: 50vw;
+  }
+// .container_content {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   text-align: center;
+// }

@@ -17,7 +17,6 @@ spaceDataRouter.get('/mars',
 spaceDataRouter.get('/earth', 
     earthController.getImages,
     (req, res) => {
-        console.log('finished spaceDataRouter: ', res.locals.photo);
         res.status(200).json(res.locals.imageData);
     }
 );

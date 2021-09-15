@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 
 const userRouter = require('./routes/user');
@@ -14,6 +15,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 //parse request body
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get('/', (req, res) => {
   return res.status(200).send();
