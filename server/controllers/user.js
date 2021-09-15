@@ -13,32 +13,37 @@ userController.logIn = async (req, res, next) => {
     const {username, password} = req.body
     const input = [username]
     console.log(username, password)
-    const sqlString = `SELECT password FROM users 
+    const sqlString = `SELECT password, id FROM users 
                         WHERE username = $1`
-    //check if the password and username match
+    //check if the username match
    const hashedPass = await db.query(sqlString, input)
    console.log(hashedPass)
 
    // to check if the username exist and the stored password associated with the username
    if(hashedPass.rows.length === 0){
     res.locals.loggedIn = false
-    return next()
+    res.status(200).json(res.local.loggedIn) 
+    // json with send back the false
    }
+   else{
 
    // if the username exsit, compare the password vs hased-password
    const pass = hashedPass.rows[0].password
    const result = await bcrypt.compare(password, pass)
    console.log(result)
-   if(false){
+   if(result === false){
     res.locals.loggedIn = false
    }
    res.locals.loggedIn = result
+   res.locals.user_id = hashedPass.rows[0].id
 //    res.locals.user_id = hasedPass.rows[0].id
-//    console.log(res.locals.loggedIn)
+   console.log(res.locals.user_id)
     return next()
 }
+}
 catch(err){
-    return next(err)
+    if(err) {res.status(200).json(false)}
+    else{return next(err)}
 }
 }
 
