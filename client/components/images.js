@@ -1,5 +1,7 @@
+import { setInterval } from 'globalthis/implementation';
 import React, { component, useState, useEffect } from 'react';
 import favoriteService from '../services/favoriteService';
+import { useInterval } from 'usehooks-ts'
 
 const Images = ({service}) => {
     const [imageLinks, setImageLinks] = useState([]);
@@ -27,13 +29,17 @@ const Images = ({service}) => {
         console.log(newNum);
     }
 
+    useInterval(()=> {
+        handleImageNumberClickAdd()
+    }, 1000)
+
     return (
         <div className='image_component'>
-            <button className='image_btns' onClick={() => handleImageNumberClickSubtract()}>Previous</button>
+            {/* <button className='image_btns' onClick={() => handleImageNumberClickSubtract()}>Previous</button> */}
             <img className='img' src={favorite}/>
             <div className='right_btns'>
-                <button className='image_btns' onClick={() => handleImageNumberClickAdd()}>Next</button>
-                <button className='image_btns favorite' onClick={() => favoriteService.addFavorites(favorite)}>Favorite</button>
+                {/* <button className='image_btns' onClick={() => handleImageNumberClickAdd()}>Next</button> */}
+                {/* <button className='image_btns favorite' onClick={() => favoriteService.addFavorites(favorite)}>Favorite</button> */}
             </div>
         </div>
     )

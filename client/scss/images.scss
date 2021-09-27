@@ -82,12 +82,25 @@
     
   }
 
-  // .earth_container {
-  //   font-family: 'Montserrat', sans-serif;
-  //   color: $offwhite;
-  //   padding: 2rem 0rem 2rem 0rem;
-  //   margin-bottom: 2rem;
-  // }
+  .earth_container {
+    // font-family: 'Montserrat', sans-serif;
+    // color: $offwhite;
+    display: flex;
+    padding: 2rem 0rem 2rem 0rem;
+    margin-bottom: 2rem;
+  }
+
+  .earth_names {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    width: 25vw;
+    // height: 85vh;
+    // background-color: $black-color;
+    // padding-top: 20vh;
+    // overflow-y: scroll;
+  }
 
   // .earth_title {
   //   font-size: larger;

@@ -7,7 +7,7 @@ import ProtectedRoute from './containers/protectedRoute';
 const App = () => {
 
     //when we have a login set useState to false
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     
     return (
     <Router>
